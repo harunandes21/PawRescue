@@ -18,6 +18,7 @@ import com.example.pawrescue.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        WebView webViewBackground = findViewById(R.id.webViewBackground);
+        webViewBackground.loadUrl("file:///android_res/drawable/animated_background.gif");
         setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
