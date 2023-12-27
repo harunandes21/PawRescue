@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Your existing design starts here -->
+    <!-- Login Page -->
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -80,8 +80,6 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"/>
     </RelativeLayout>
-    <!-- Your existing design ends here -->
 
-    <!-- You can add additional UI elements within the ConstraintLayout if needed -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
