@@ -1,0 +1,13 @@
+<resources>
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+
+
+    <style name="LoadingTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/back1</item>
+    </style>
+
+</resources>

@@ -18,4 +18,5 @@
     <string name="login">Login</string>
     <string name="sign_up">Don\'t have an account? Sign up!</string>
     <string name="logo_description">PawRescue Logo</string>
+    <string name="login_activity_label">Login</string>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back1">
+
+    <!-- Loading Page -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Loading Logo -->
+        <ImageView
+            android:id="@+id/imageViewLoadingLogo"
+            android:layout_width="750dp"
+            android:layout_height="444dp"
+
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/paw_logo" />
+
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
