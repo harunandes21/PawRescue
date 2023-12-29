@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Signup Page -->
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSignup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back3"
+        tools:context=".SignupActivity">
+
+        <ImageView
+            android:id="@+id/imageViewLogoSignup"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="35dp"
+            android:contentDescription="@string/logo_description"
+            android:src="@drawable/paw_logo" />
+
+        <EditText
+            android:id="@+id/editTextUsernameSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageViewLogoSignup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:hint="@string/username"
+            android:padding="12dp"
+            android:textColorHint="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editTextPasswordSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextUsernameSignup"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColorHint="@android:color/black"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextPasswordSignup"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColorHint="@android:color/black"
+            android:textSize="16sp"/>
+
+        <!-- Add two Spinner (Dropdown) elements for city and neighborhood -->
+        <Spinner
+            android:id="@+id/spinnerCity"
+            android:layout_width="339dp"
+            android:layout_height="47dp"
+            android:layout_below="@id/editTextConfirmPassword"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinnerNeighborhood"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_below="@id/spinnerCity"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:textSize="19sp"/>
+
+        <Button
+            android:id="@+id/buttonSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinnerNeighborhood"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="141dp"
+            android:background="@drawable/rounded_button_background"
+            android:text="@string/sign_up_button"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerNeighborhood" />
+
+        <!-- You can add more elements or adjust layout as needed -->
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

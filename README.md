@@ -1,2 +1,0 @@
-# PawRescue
- PawRescue Mobile application

@@ -11,12 +11,38 @@
         Lorem ipsum dolor
     </string>
 
+    <string-array name="city_array">
+        <item>Ankara</item>
+        <item>Istanbul</item>
+        <item>Izmir</item>
+        <item>Antalya</item>
+        <item>Bursa</item>
+        <item>Diyarbakır</item>
+        <item>Eskişehir</item>
+        <item>Gaziantep</item>
+        <item>Adana</item>
+        <item>Konya</item>
+        <item>Manisa</item>
+        <item>Mardin</item>
+        <item>Adapazarı (Sakarya)</item>
+        <item>Samsun</item>
+        <item>Şanlıurfa</item>
+        <item>Trabzon</item>
+    </string-array>
+    <string-array name="neighborhood_array">
+        <item>Neighborhood A</item>
+        <item>Neighborhood B</item>
+        <item>Neighborhood C</item>
+
+    </string-array>
+
 
     <!-- Login Page -->
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="login">Login</string>
-    <string name="sign_up">Don\'t have an account? Sign up!</string>
+    <string name="sign_up">Need an account? Sign up!</string>
+    <string name="sign_up_button">SIGN UP!</string>
     <string name="logo_description">PawRescue Logo</string>
-    <string name="login_activity_label">Login</string>
 </resources>
