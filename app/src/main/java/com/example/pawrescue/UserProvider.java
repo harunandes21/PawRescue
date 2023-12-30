@@ -27,6 +27,7 @@ public class UserProvider extends ContentProvider {
     static {
         matcher = new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(CONTENT_AUTHORITY,PATH_USER,1);
+        matcher.addURI(CONTENT_AUTHORITY, PATH_USER + "/#", 2);
     }
 
 
@@ -43,7 +44,7 @@ public class UserProvider extends ContentProvider {
     public boolean onCreate() {
         DatabaseHelper helper = new DatabaseHelper(getContext());
         db = helper.getWritableDatabase();
-        return false;
+        return true;
     }
 
     @Nullable
@@ -61,6 +62,22 @@ public class UserProvider extends ContentProvider {
                         null
                 );
                 return cursor;
+            case 2:
+                String usernameToCheck = uri.getLastPathSegment();
+                Cursor usernameCursor = db.query(
+                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        projection,
+                        NotDefterimContract.UserEntry.COLUMN_USERNAME + "=?",
+                        new String[]{usernameToCheck},
+                        null,
+                        null,
+                        null
+                );
+                if (usernameCursor != null) { // Check for null
+                    return usernameCursor;
+                } else {
+                    return null;
+                }
         }
         return null;
     }

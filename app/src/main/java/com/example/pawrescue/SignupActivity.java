@@ -1,18 +1,23 @@
 package com.example.pawrescue;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pawrescue.data.NotDefterimContract;
+
+import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -50,6 +55,7 @@ public class SignupActivity extends AppCompatActivity {
 
         Button signupButton = findViewById(R.id.buttonSignup);
         signupButton.setOnClickListener(view -> new InsertDataTask().execute());
+
     }
 
     private class InsertDataTask extends AsyncTask<Void, Void, String> {
@@ -93,6 +99,22 @@ public class SignupActivity extends AppCompatActivity {
                 if (!password.equals(confirmPassword)) {
                     return "Passwords do not match";
                 }
+                Cursor usernameCursor = getContentResolver().query(
+                        CONTENT_URI,
+                        null,
+                        NotDefterimContract.UserEntry.COLUMN_USERNAME + "=?",
+                        new String[]{username},
+                        null
+                );
+
+                if (usernameCursor != null) {
+                    if (usernameCursor.getCount() > 0) {
+                        // Username already exists
+                        usernameCursor.close();
+                        return "Username already exists";
+                    }
+                    usernameCursor.close();
+                }
 
                 // Insert data into content provider
                 ContentValues values = new ContentValues();
@@ -114,7 +136,9 @@ public class SignupActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.equals("Success")) {
                 // Add any additional handling or UI updates for successful insertion
-                Toast.makeText(SignupActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SignupActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                showSuccessMessage();
+
                 // Redirect to login page (you need to implement the logic for redirection)
             } else {
                 // Handle errors or show a message for unsuccessful insertion
@@ -123,5 +147,28 @@ public class SignupActivity extends AppCompatActivity {
 
         }
 
+    }
+    private void showSuccessMessage() {
+        // Create an AlertDialog.Builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("You are registered successfully!")
+                .setMessage("You are being redirected to login page. ");
+
+        // Create the AlertDialog
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        // Automatically dismiss the AlertDialog after 2 seconds
+        View view = Objects.requireNonNull(alertDialog.getWindow()).getDecorView();
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Dismiss the AlertDialog after the desired duration
+                if (alertDialog.isShowing()) {
+                    alertDialog.dismiss();
+                    finish();
+                }
+            }
+        }, 2000); // Adjust the delay time as needed (in milliseconds)
     }
 }
