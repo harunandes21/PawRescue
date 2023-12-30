@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.example.pawrescue.data.DatabaseHelper;
+//import com.example.pawrescue.data.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 

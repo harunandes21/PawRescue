@@ -7,6 +7,7 @@ public class User {
     public String city;
     public String neighborhood;
 
+
     public User(long id, String username, String password, String city, String neighborhood) {
         this.id = id;
         this.username = username;
