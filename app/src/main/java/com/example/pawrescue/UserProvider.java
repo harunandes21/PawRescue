@@ -215,7 +215,38 @@ public class UserProvider extends ContentProvider {
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+
+        int rowsUpdated;
+
+        // URI'nin eşleştiği tabloya bağlı olarak güncelleme işlemi gerçekleştirilir
+        int uriType = matcher.match(uri);
+        switch (uriType) {
+            case 1:
+                // Tüm verileri güncelleme
+                rowsUpdated = db.update(NotDefterimContract.UserEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+            case 2:
+                // Tüm verileri güncelleme
+                rowsUpdated = db.update(NotDefterimContract.UserEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+            case 3:
+                // Tüm verileri güncelleme
+                rowsUpdated = db.update(NotDefterimContract.PetEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+            case 4:
+                // Tüm verileri güncelleme
+                rowsUpdated = db.update(NotDefterimContract.AdoptionEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI: " + uri);
+        }
+
+        // Veritabanındaki veri değiştiğinde, bu değişikliği dinleyenleri bilgilendir
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return rowsUpdated;
     }
     private class DatabaseHelper extends SQLiteOpenHelper {
 

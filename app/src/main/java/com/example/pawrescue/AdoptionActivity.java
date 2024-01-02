@@ -1,5 +1,7 @@
 package com.example.pawrescue;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pawrescue.data.NotDefterimContract;
+
 public class AdoptionActivity extends AppCompatActivity {
+    static final Uri CONTENT_URI_USER = UserProvider.CONTENT_URI_USER;
+    static final Uri CONTENT_URI_PET = UserProvider.CONTENT_URI_PET;
+    static final Uri CONTENT_URI_ADOPTION = UserProvider.CONTENT_URI_ADOPTION;
     private Spinner locationSpinner,speciesSpinner,ageSpinner,healthStatusSpinner;
     private String location,species,age,healthStatus;
     private ArrayAdapter<CharSequence> adapterLocation,adapterSpecies,adapterAge,adapterHealth;
@@ -88,6 +95,18 @@ public class AdoptionActivity extends AppCompatActivity {
         });
 
         adoptButton.setOnClickListener(view -> {
+
+
+            ContentValues values = new ContentValues();
+            values.put(NotDefterimContract.UserEntry.COLUMN_USERNAME, "sss");
+            values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, "password");
+
+
+            String selection = NotDefterimContract.UserEntry._ID + " = ? ";
+            String selectionArgs[] = {"1"};
+
+            getContentResolver().update(CONTENT_URI_USER,values,selection,selectionArgs);
+
             adoptButton.setText(healthStatus);
         });
     }
