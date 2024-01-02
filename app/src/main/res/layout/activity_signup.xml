@@ -81,8 +81,9 @@
             android:background="@drawable/rounded_edittext_background"
             android:textSize="20sp" />
 
+
         <Spinner
-            android:id="@+id/spinnerNeighborhood"
+            android:id="@+id/avatarSpinner"
             android:layout_width="match_parent"
             android:layout_height="47dp"
             android:layout_below="@id/spinnerCity"
@@ -96,7 +97,7 @@
             android:id="@+id/buttonSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/spinnerNeighborhood"
+            android:layout_below="@id/avatarSpinner"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
@@ -109,7 +110,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinnerNeighborhood" />
+            app:layout_constraintTop_toBottomOf="@id/avatarSpinner" />
 
         <!-- You can add more elements or adjust layout as needed -->
 

@@ -30,7 +30,10 @@ public class SignupActivity extends AppCompatActivity {
 
         // Get references to the Spinners
         Spinner spinnerCity = findViewById(R.id.spinnerCity);
-        Spinner spinnerNeighborhood = findViewById(R.id.spinnerNeighborhood);
+        //Spinner spinnerNeighborhood = findViewById(R.id.spinnerNeighborhood);
+        Spinner spinnerAvatar = findViewById(R.id.avatarSpinner);
+        AvatarAdapter adapter = new AvatarAdapter(SignupActivity.this, AvatarData.getAvatarList());
+        spinnerAvatar.setAdapter(adapter);
 
         // Create ArrayAdapter using the string arrays and default spinner layout
         ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter.createFromResource(
@@ -39,19 +42,19 @@ public class SignupActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item
         );
 
-        ArrayAdapter<CharSequence> neighborhoodAdapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.neighborhood_array,
-                android.R.layout.simple_spinner_item
-        );
+//        ArrayAdapter<CharSequence> neighborhoodAdapter = ArrayAdapter.createFromResource(
+//                this,
+//                R.array.neighborhood_array,
+//                android.R.layout.simple_spinner_item
+//        );
 
         // Specify the layout to use when the list appears
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        neighborhoodAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //neighborhoodAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
         spinnerCity.setAdapter(cityAdapter);
-        spinnerNeighborhood.setAdapter(neighborhoodAdapter);
+        //spinnerNeighborhood.setAdapter(neighborhoodAdapter);
 
         Button signupButton = findViewById(R.id.buttonSignup);
         signupButton.setOnClickListener(view -> new InsertDataTask().execute());
@@ -68,14 +71,12 @@ public class SignupActivity extends AppCompatActivity {
                 EditText passwordEditText = findViewById(R.id.editTextPasswordSignup);
                 EditText confirmPasswordEditText = findViewById(R.id.editTextConfirmPassword);
                 Spinner citySpinner = findViewById(R.id.spinnerCity);
-                Spinner neighborhoodSpinner = findViewById(R.id.spinnerNeighborhood);
 
                 // Get the text entered by the user
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String confirmPassword = confirmPasswordEditText.getText().toString();
                 String city = citySpinner.getSelectedItem().toString();
-                String neighborhood = neighborhoodSpinner.getSelectedItem().toString();
 
                 // Check if any field is empty
 
