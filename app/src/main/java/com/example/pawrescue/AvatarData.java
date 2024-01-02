@@ -18,6 +18,14 @@ public class AvatarData {
         avatar2.setName("Avatar 2");
         avatar2.setImage(R.drawable.avatar2);
         avatarList.add(avatar2);
+        Avatar avatar3 = new Avatar();
+        avatar3.setName("Avatar 3");
+        avatar3.setImage(R.drawable.avatar3);
+        avatarList.add(avatar3);
+        Avatar avatar4 = new Avatar();
+        avatar4.setName("Avatar 4");
+        avatar4.setImage(R.drawable.avatar4);
+        avatarList.add(avatar4);
 
         return avatarList;
     }

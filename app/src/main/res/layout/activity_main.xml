@@ -59,17 +59,20 @@
 
         <!-- Achievement Row 1 -->
         <TableRow>
+
             <!-- Badge Image for Achievement 1 -->
             <ImageView
+                android:id="@+id/badge1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/pet_friendly_badge"/>
+                android:src="@drawable/badge1"/>
 
             <!-- Achievement Description for Achievement 1 -->
             <TextView
+                android:id="@+id/T_badge1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Active Volunteer Badge"/>
+                android:text="Successful Adoption Badge"/>
         </TableRow>
 
         <!-- Achievement Row 2 -->
@@ -79,15 +82,17 @@
             android:layout_marginTop="5dp">
             <!-- Badge Image for Achievement 2 -->
             <ImageView
+                android:id="@+id/badge2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/pet_friendly_badge" />
+                android:src="@drawable/badge2" />
 
             <!-- Achievement Description for Achievement 2 -->
             <TextView
+                android:id="@+id/T_badge2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Successful Adoption Badge" />
+                android:text="Pet Friendly Badge" />
         </TableRow>
 
         <!-- More Achievement Rows... -->
