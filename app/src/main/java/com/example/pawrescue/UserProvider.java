@@ -45,9 +45,9 @@ public class UserProvider extends ContentProvider {
                     NotDefterimContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
                     NotDefterimContract.UserEntry.COLUMN_USERNAME + " TEXT NOT NULL," +
                     NotDefterimContract.UserEntry.COLUMN_PASSWORD + " TEXT NOT NULL," +
-                    NotDefterimContract.UserEntry.COLUMN_POINT + " INTEGER," +
-                    NotDefterimContract.UserEntry.COLUMN_CITY + " TEXT," +
-                    NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX + " INTEGER," +
+                    NotDefterimContract.UserEntry.COLUMN_POINT + " INTEGER NOT NULL," +
+                    NotDefterimContract.UserEntry.COLUMN_CITY + " TEXT NOT NULL," +
+                    NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX + " INTEGER NOT NULL," +
                     NotDefterimContract.UserEntry.COLUMN_ADOPTION_ID + " INTEGER," +
                     "FOREIGN KEY (" + NotDefterimContract.UserEntry.COLUMN_ADOPTION_ID + ") REFERENCES adoption(_ID)" +
                     ");";
@@ -57,7 +57,7 @@ public class UserProvider extends ContentProvider {
             "CREATE TABLE " + NotDefterimContract.PetEntry.TABLE_NAME + " (" +
                     NotDefterimContract.PetEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     NotDefterimContract.PetEntry.COLUMN_NAME + " TEXT NOT NULL, " +
-                    NotDefterimContract.PetEntry.COLUMN_SPECIES + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_SPECIES + " TEXT NOT NULL, " +
                     NotDefterimContract.PetEntry.COLUMN_GENDER + " TEXT, " +
                     NotDefterimContract.PetEntry.COLUMN_HEALTH + " TEXT, " +
                     NotDefterimContract.PetEntry.COLUMN_LOCATION + " TEXT, " +
@@ -70,7 +70,7 @@ public class UserProvider extends ContentProvider {
             "CREATE TABLE " + NotDefterimContract.AdoptionEntry.TABLE_NAME + " (" +
                     NotDefterimContract.AdoptionEntry._ID + " INTEGER PRIMARY KEY," +
                     NotDefterimContract.AdoptionEntry.COLUMN_STATUS+ " TEXT NOT NULL," +
-                    NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + " INTEGER," +
+                    NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + " INTEGER NOT NULL," +
                     "FOREIGN KEY (" + NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + ") REFERENCES pet(_ID)" +
                     ");";
 

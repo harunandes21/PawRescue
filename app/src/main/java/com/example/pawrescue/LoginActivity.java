@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             String city = cursor.getString(1);
             Log.d("LoginActivity", "User ID: " + userId);
             Log.d("LoginActivity", "City: " + city);
-            user = new User(userId, username, password, city);
+            user = new User(userId, username, password,0, city,0);
             cursor.close();
         }
 
