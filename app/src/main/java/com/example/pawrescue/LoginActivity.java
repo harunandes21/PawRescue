@@ -100,11 +100,9 @@ public class LoginActivity extends AppCompatActivity {
         if (cursor != null && cursor.moveToFirst()) {
             long userId = cursor.getLong(0);
             String city = cursor.getString(1);
-            String neighborhood = cursor.getString(2);
             Log.d("LoginActivity", "User ID: " + userId);
             Log.d("LoginActivity", "City: " + city);
-            Log.d("LoginActivity", "Neighborhood: " + neighborhood);
-            user = new User(userId, username, password, city, neighborhood);
+            user = new User(userId, username, password, city);
             cursor.close();
         }
 

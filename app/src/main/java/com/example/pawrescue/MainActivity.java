@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
             TextView userInfoTextView = findViewById(R.id.text2);
             String userInfo = "User ID: " + loggedInUser.id +
                     "\nUsername: " + loggedInUser.username +
-                    "\nCity: " + loggedInUser.city +
-                    "\nNeighborhood: " + loggedInUser.neighborhood;
+                    "\nCity: " + loggedInUser.city;
             userInfoTextView.setText(userInfo);
 
         }
