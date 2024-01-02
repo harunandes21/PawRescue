@@ -118,6 +118,8 @@ public class SignupActivity extends AppCompatActivity {
                 values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, password);
                 values.put(NotDefterimContract.UserEntry.COLUMN_CITY, city);
                 values.put(NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX, avatar);
+                values.put(NotDefterimContract.UserEntry.COLUMN_POINT, 0);
+                values.put(NotDefterimContract.UserEntry.COLUMN_CITY, "Ankara");
 
                 getContentResolver().insert(CONTENT_URI, values);
 
