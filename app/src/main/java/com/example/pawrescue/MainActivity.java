@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
         User loggedInUser = (User) intent.getSerializableExtra("user");
         if (loggedInUser != null) {
             // Example: Display user information in a TextView
-            TextView userInfoTextView = findViewById(R.id.text2);
-            String userInfo = "User ID: " + loggedInUser.id +
-                    "\nUsername: " + loggedInUser.username +
-                    "\nCity: " + loggedInUser.city;
+            TextView userInfoTextView = findViewById(R.id.username);
+            String userInfo = loggedInUser.username;
             userInfoTextView.setText(userInfo);
+            TextView userPointView = findViewById(R.id.point);
+            String userPoint = loggedInUser.username;
+            userPointView.setText(userInfo);
 
         }
     }

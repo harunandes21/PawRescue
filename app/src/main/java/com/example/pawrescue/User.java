@@ -29,6 +29,15 @@ public class User implements Serializable {
         this.point = point;
         this.avatarIndex = avatarIndex;
     }
-
+    public int getAvatarDrawableResource() {
+        switch (avatarIndex) {
+            case 1:
+                return R.drawable.avatar_1;
+            case 2:
+                return R.drawable.avatar_2;
+            // Add more cases as needed
+            default:
+                return R.drawable.default_avatar; // Provide a default drawable if needed
+        }
 
 }
