@@ -2,6 +2,8 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -52,7 +54,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_marginTop="15dp">
 
         <!-- Achievement Row 1 -->
         <TableRow>
@@ -72,7 +75,8 @@
         <!-- Achievement Row 2 -->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
             <!-- Badge Image for Achievement 2 -->
             <ImageView
                 android:layout_width="48dp"
@@ -88,5 +92,57 @@
 
         <!-- More Achievement Rows... -->
     </TableLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="462dp">
+
+
+        <Button
+            android:id="@+id/Vbutton"
+            android:layout_width="276dp"
+            android:layout_height="123dp"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            android:text="VIRTUAL ADOPTION CENTER"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/SosButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.622"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/SosButton"
+            android:layout_width="276dp"
+            android:layout_height="123dp"
+            android:background="@android:color/transparent"
+            android:text="EMERGENCY LINES"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/EmgButton"
+            android:layout_width="276dp"
+            android:layout_height="123dp"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/transparent"
+            android:text="SETTINGS"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SosButton"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>

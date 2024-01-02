@@ -81,7 +81,10 @@ public class LoginActivity extends AppCompatActivity {
         String[] columns = {
                 NotDefterimContract.UserEntry._ID,
                 NotDefterimContract.UserEntry.COLUMN_CITY,
-                //NotDefterimContract.UserEntry.COLUMN_NEIGHBORHOOD
+                NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX,
+                NotDefterimContract.UserEntry.COLUMN_POINT,
+
+
         };
 
         String selection = NotDefterimContract.UserEntry.COLUMN_USERNAME + " = ? AND " +
@@ -100,9 +103,11 @@ public class LoginActivity extends AppCompatActivity {
         if (cursor != null && cursor.moveToFirst()) {
             long userId = cursor.getLong(0);
             String city = cursor.getString(1);
-            Log.d("LoginActivity", "User ID: " + userId);
-            Log.d("LoginActivity", "City: " + city);
-            user = new User(userId, username, password,0, city,0);
+            int avatarIndex=cursor.getInt(2);
+            int point=cursor.getInt(3);
+
+
+            user = new User(userId, username, password,point, city, avatarIndex);
             cursor.close();
         }
 

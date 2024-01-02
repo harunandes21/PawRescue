@@ -32,12 +32,13 @@ public class User implements Serializable {
     public int getAvatarDrawableResource() {
         switch (avatarIndex) {
             case 1:
-                return R.drawable.avatar_1;
+                return R.drawable.avatar1;
             case 2:
-                return R.drawable.avatar_2;
+                return R.drawable.avatar2;
             // Add more cases as needed
             default:
-                return R.drawable.default_avatar; // Provide a default drawable if needed
+                return R.drawable.profile_icon; // Provide a default drawable if needed
         }
 
+    }
 }
