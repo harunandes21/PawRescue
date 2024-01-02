@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
 
-    static final Uri CONTENT_URI = UserProvider.CONTENT_URI;
+    static final Uri CONTENT_URI = UserProvider.CONTENT_URI_USER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +121,7 @@ public class SignupActivity extends AppCompatActivity {
                 values.put(NotDefterimContract.UserEntry.COLUMN_USERNAME, username);
                 values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, password);
                 values.put(NotDefterimContract.UserEntry.COLUMN_CITY, city);
-                values.put(NotDefterimContract.UserEntry.COLUMN_NEIGHBORHOOD, neighborhood);
+                //values.put(NotDefterimContract.UserEntry.COLUMN_NEIGHBORHOOD, neighborhood);
 
                 getContentResolver().insert(CONTENT_URI, values);
 

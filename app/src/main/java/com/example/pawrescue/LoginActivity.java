@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         String[] columns = {
                 NotDefterimContract.UserEntry._ID,
                 NotDefterimContract.UserEntry.COLUMN_CITY,
-                NotDefterimContract.UserEntry.COLUMN_NEIGHBORHOOD
+                //NotDefterimContract.UserEntry.COLUMN_NEIGHBORHOOD
         };
 
         String selection = NotDefterimContract.UserEntry.COLUMN_USERNAME + " = ? AND " +
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         String[] selectionArgs = {username, password};
 
         Cursor cursor = getContentResolver().query(
-                UserProvider.CONTENT_URI,
+                UserProvider.CONTENT_URI_USER,
                 columns,
                 selection,
                 selectionArgs,

@@ -21,25 +21,59 @@ public class UserProvider extends ContentProvider {
     SQLiteDatabase db;
     static final String CONTENT_AUTHORITY="pawrescue.com.userprovider";
     static final String PATH_USER="user";
+    static final String PATH_PET="pet";
+    static final String PATH_ADOPTION="adoption";
     static final Uri BASE_CONTENT_URI = Uri.parse("content://"+CONTENT_AUTHORITY);
-    static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_USER);
+    static final Uri CONTENT_URI_USER = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_USER);
+    static final Uri CONTENT_URI_PET = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_PET);
+    static final Uri CONTENT_URI_ADOPTION = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_ADOPTION);
     static final UriMatcher matcher;
     static {
         matcher = new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(CONTENT_AUTHORITY,PATH_USER,1);
         matcher.addURI(CONTENT_AUTHORITY, PATH_USER + "/#", 2);
+        matcher.addURI(CONTENT_AUTHORITY, PATH_PET , 3);
+        matcher.addURI(CONTENT_AUTHORITY, PATH_ADOPTION , 4);
     }
 
 
     public static final String DATABASE_NAME="pawrescue.db";
     private static final int DATABASE_VERSION=1;
+
     private static final String TABLE_USER_CREATE =
             "CREATE TABLE " + NotDefterimContract.UserEntry.TABLE_NAME + " (" +
-                    NotDefterimContract.UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    NotDefterimContract.UserEntry.COLUMN_USERNAME + " TEXT NOT NULL, " +
-                    NotDefterimContract.UserEntry.COLUMN_PASSWORD + " TEXT NOT NULL, " +
-                    NotDefterimContract.UserEntry.COLUMN_CITY + " TEXT, " +
-                    NotDefterimContract.UserEntry.COLUMN_NEIGHBORHOOD + " TEXT);";
+                    NotDefterimContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
+                    NotDefterimContract.UserEntry.COLUMN_USERNAME + " TEXT NOT NULL," +
+                    NotDefterimContract.UserEntry.COLUMN_PASSWORD + " TEXT NOT NULL," +
+                    NotDefterimContract.UserEntry.COLUMN_POINT + " INTEGER," +
+                    NotDefterimContract.UserEntry.COLUMN_CITY + " TEXT," +
+                    NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX + " INTEGER," +
+                    NotDefterimContract.UserEntry.COLUMN_ADOPTION_ID + " INTEGER," +
+                    "FOREIGN KEY (" + NotDefterimContract.UserEntry.COLUMN_ADOPTION_ID + ") REFERENCES adoption(_ID)" +
+                    ");";
+
+
+    private static final String TABLE_PET_CREATE =
+            "CREATE TABLE " + NotDefterimContract.PetEntry.TABLE_NAME + " (" +
+                    NotDefterimContract.PetEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    NotDefterimContract.PetEntry.COLUMN_NAME + " TEXT NOT NULL, " +
+                    NotDefterimContract.PetEntry.COLUMN_SPECIES + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_GENDER + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_HEALTH + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_LOCATION + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_IMAGE_URL + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_OWNER_NAME + " TEXT, " +
+                    NotDefterimContract.PetEntry.COLUMN_AGE + " TEXT NOT NULL" +
+                    ");";
+
+    private static final String TABLE_ADOPTION_CREATE =
+            "CREATE TABLE " + NotDefterimContract.AdoptionEntry.TABLE_NAME + " (" +
+                    NotDefterimContract.AdoptionEntry._ID + " INTEGER PRIMARY KEY," +
+                    NotDefterimContract.AdoptionEntry.COLUMN_STATUS+ " TEXT NOT NULL," +
+                    NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + " INTEGER," +
+                    "FOREIGN KEY (" + NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + ") REFERENCES pet(_ID)" +
+                    ");";
+
     @Override
     public boolean onCreate() {
         DatabaseHelper helper = new DatabaseHelper(getContext());
@@ -78,6 +112,28 @@ public class UserProvider extends ContentProvider {
                 } else {
                     return null;
                 }
+            case 3:
+                Cursor cursorPet = db.query(
+                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        null
+                );
+                return cursorPet;
+            case 4:
+                Cursor cursorAdoption = db.query(
+                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        null
+                );
+                return cursorAdoption;
         }
         return null;
     }
@@ -97,7 +153,49 @@ public class UserProvider extends ContentProvider {
                     long newRowId = db.insert(NotDefterimContract.UserEntry.TABLE_NAME, null, values);
 
                     if (newRowId > 0) {
-                        Uri _uri = ContentUris.withAppendedId(CONTENT_URI,newRowId);
+                        Uri _uri = ContentUris.withAppendedId(CONTENT_URI_USER,newRowId);
+                        return _uri;
+                    } else {
+                        // Eklerken bir hata oluştu
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Hata işleme kodları
+                }
+            case 2:
+                try {
+                    long newRowId = db.insert(NotDefterimContract.UserEntry.TABLE_NAME, null, values);
+
+                    if (newRowId > 0) {
+                        Uri _uri = ContentUris.withAppendedId(CONTENT_URI_USER,newRowId);
+                        return _uri;
+                    } else {
+                        // Eklerken bir hata oluştu
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Hata işleme kodları
+                }
+            case 3:
+                try {
+                    long newRowId = db.insert(NotDefterimContract.PetEntry.TABLE_NAME, null, values);
+
+                    if (newRowId > 0) {
+                        Uri _uri = ContentUris.withAppendedId(CONTENT_URI_PET,newRowId);
+                        return _uri;
+                    } else {
+                        // Eklerken bir hata oluştu
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Hata işleme kodları
+                }
+            case 4:
+                try {
+                    long newRowId = db.insert(NotDefterimContract.AdoptionEntry.TABLE_NAME, null, values);
+
+                    if (newRowId > 0) {
+                        Uri _uri = ContentUris.withAppendedId(CONTENT_URI_ADOPTION,newRowId);
                         return _uri;
                     } else {
                         // Eklerken bir hata oluştu
@@ -107,7 +205,6 @@ public class UserProvider extends ContentProvider {
                     // Hata işleme kodları
                 }
         }
-
         return null;
     }
 
@@ -132,6 +229,8 @@ public class UserProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(TABLE_USER_CREATE);
+            db.execSQL(TABLE_PET_CREATE);
+            db.execSQL(TABLE_ADOPTION_CREATE);
         }
 
         @Override
