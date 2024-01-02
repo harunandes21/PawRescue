@@ -22,7 +22,9 @@ import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
 
-    static final Uri CONTENT_URI = UserProvider.CONTENT_URI_USER;
+    static final Uri CONTENT_URI_USER = UserProvider.CONTENT_URI_USER;
+    static final Uri CONTENT_URI_PET = UserProvider.CONTENT_URI_PET;
+    static final Uri CONTENT_URI_ADOPTION = UserProvider.CONTENT_URI_ADOPTION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +98,7 @@ public class SignupActivity extends AppCompatActivity {
                     return "Passwords do not match";
                 }
                 Cursor usernameCursor = getContentResolver().query(
-                        CONTENT_URI,
+                        CONTENT_URI_USER,
                         null,
                         NotDefterimContract.UserEntry.COLUMN_USERNAME + "=?",
                         new String[]{username},
@@ -120,7 +122,7 @@ public class SignupActivity extends AppCompatActivity {
                 values.put(NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX, avatar);
                 values.put(NotDefterimContract.UserEntry.COLUMN_POINT, 0);
 
-                getContentResolver().insert(CONTENT_URI, values);
+                getContentResolver().insert(CONTENT_URI_USER, values);
 
                 return "Success"; // Successfully inserted data
             } catch (Exception e) {
