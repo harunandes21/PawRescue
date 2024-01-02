@@ -38,6 +38,11 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.PawRescue">
         </activity>
+        <activity
+            android:name=".AdoptionActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PawRescue">
+        </activity>
         <provider
             android:authorities="pawrescue.com.userprovider"
             android:name=".UserProvider">
