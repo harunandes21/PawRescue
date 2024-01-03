@@ -1,6 +1,7 @@
 package com.example.pawrescue;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,11 +24,12 @@ public class AdoptionActivity extends AppCompatActivity {
     private Spinner locationSpinner,speciesSpinner,ageSpinner,healthStatusSpinner;
     private String location,species,age,healthStatus;
     private ArrayAdapter<CharSequence> adapterLocation,adapterSpecies,adapterAge,adapterHealth;
+    Intent intent;
+    User loggedInUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adoption);
-
         // Connect UI elements
         //RecyclerView profileRecyclerView = findViewById(R.id.profileRecyclerView);
         locationSpinner = findViewById(R.id.locationSpinner);
@@ -45,6 +49,8 @@ public class AdoptionActivity extends AppCompatActivity {
         adapterHealth = ArrayAdapter.createFromResource(this,R.array.health_array, android.R.layout.simple_spinner_item);
         adapterHealth.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         healthStatusSpinner.setAdapter(adapterHealth);
+        intent = getIntent();
+        loggedInUser = (User) intent.getSerializableExtra("user");
 
         locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -98,16 +104,33 @@ public class AdoptionActivity extends AppCompatActivity {
 
 
             ContentValues values = new ContentValues();
-            values.put(NotDefterimContract.UserEntry.COLUMN_USERNAME, "sss");
-            values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, "password");
-
-
+            //values.put(NotDefterimContract.UserEntry.COLUMN_USERNAME, "sss");
+            //values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, "password");
+            values.put(NotDefterimContract.UserEntry.COLUMN_POINT, 100);
+            String userId = String.valueOf(loggedInUser.id);
             String selection = NotDefterimContract.UserEntry._ID + " = ? ";
-            String selectionArgs[] = {"1"};
+            String selectionArgs[] = {userId};
 
             getContentResolver().update(CONTENT_URI_USER,values,selection,selectionArgs);
 
-            adoptButton.setText(healthStatus);
+            //adoptButton.setText(healthStatus);
+            showAlertDialog("Success!", "You have successful adopted a pet and earned 100 points!!!");
         });
+    }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    Intent mainIntent = new Intent(AdoptionActivity.this, MainActivity.class);
+                    mainIntent.putExtra("user", loggedInUser);
+                    loggedInUser.point += 100;
+                    startActivity(mainIntent);
+                    finish();
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

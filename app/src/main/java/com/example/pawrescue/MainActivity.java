@@ -1,5 +1,6 @@
 package com.example.pawrescue;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
@@ -12,6 +13,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private GestureDetector gestureDetector;
     private boolean isZoomed = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tBadge1=findViewById(R.id.T_badge1);
         TextView tBadge2=findViewById(R.id.T_badge2);
         profilePicture = findViewById(R.id.profilePicture);
+        Button logoutButton = findViewById(R.id.LogOutButton);
+        Button vAdopt = findViewById(R.id.Vbutton);
         badge1.setOnTouchListener(new OnDoubleTapListener(this, badge1));
         badge2.setOnTouchListener(new OnDoubleTapListener(this, badge2));
 
@@ -58,6 +63,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            logoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAlertDialog("Logging Out", "Are you sure to log out ?");
+                }
+            });
+
+            vAdopt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent adoptIntent = new Intent(MainActivity.this, AdoptionActivity.class);
+                    adoptIntent.putExtra("user", loggedInUser);
+                    startActivity(adoptIntent);
+                    finish();
+                }
+            });
+
             profilePicture.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -81,29 +103,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-//           if(userPointInt < 100)
-//            {
-//                badge1.setVisibility(View.INVISIBLE);
-//                tBadge1.setVisibility(View.INVISIBLE);
-//                badge2.setVisibility(View.INVISIBLE);
-//                tBadge2.setVisibility(View.INVISIBLE);
-//
-//            }
-//            else if(userPointInt >= 100 && userPointInt < 110)
-//           {
-//               badge1.setVisibility(View.VISIBLE);
-//               tBadge1.setVisibility(View.VISIBLE);
-//               badge2.setVisibility(View.INVISIBLE);
-//               tBadge2.setVisibility(View.INVISIBLE);
-//
-//           }
-//            else if (userPointInt >= 110) {
-//               badge1.setVisibility(View.VISIBLE);
-//               tBadge1.setVisibility(View.VISIBLE);
-//               badge2.setVisibility(View.VISIBLE);
-//               tBadge2.setVisibility(View.VISIBLE);
-//
-//           }
+           if(userPointInt < 100)
+            {
+                badge1.setVisibility(View.INVISIBLE);
+                tBadge1.setVisibility(View.INVISIBLE);
+                badge2.setVisibility(View.INVISIBLE);
+                tBadge2.setVisibility(View.INVISIBLE);
+
+            }
+            else if(userPointInt >= 100 && userPointInt < 110)
+           {
+               badge1.setVisibility(View.VISIBLE);
+               tBadge1.setVisibility(View.VISIBLE);
+               badge2.setVisibility(View.INVISIBLE);
+               tBadge2.setVisibility(View.INVISIBLE);
+
+           }
+            else if (userPointInt >= 110) {
+               badge1.setVisibility(View.VISIBLE);
+               tBadge1.setVisibility(View.VISIBLE);
+               badge2.setVisibility(View.VISIBLE);
+               tBadge2.setVisibility(View.VISIBLE);
+
+           }
         }
     }
 
@@ -129,6 +151,21 @@ public class MainActivity extends AppCompatActivity {
         scaleDownY.setInterpolator(new AccelerateDecelerateInterpolator());
         scaleDownX.start();
         scaleDownY.start();
+    }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(loginIntent);
+                    finish();
+                })
+                .setNegativeButton("NO", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private class OnDoubleTapListener implements View.OnTouchListener {

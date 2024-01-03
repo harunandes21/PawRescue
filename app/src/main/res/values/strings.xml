@@ -37,13 +37,13 @@
         <item>Şanlıurfa</item>
         <item>Trabzon</item>
     </string-array>
+
     <string-array name="neighborhood_array">
         <item>Neighborhood A</item>
         <item>Neighborhood B</item>
         <item>Neighborhood C</item>
 
     </string-array>
-
 
     <!-- Login Page -->
     <string name="username">Username</string>

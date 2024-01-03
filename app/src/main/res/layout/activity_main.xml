@@ -135,12 +135,12 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/EmgButton"
+            android:id="@+id/LogOutButton"
             android:layout_width="276dp"
             android:layout_height="123dp"
             android:layout_marginTop="12dp"
             android:background="@android:color/transparent"
-            android:text="SETTINGS"
+            android:text="Log Out"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
