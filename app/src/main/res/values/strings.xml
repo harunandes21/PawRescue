@@ -31,8 +31,20 @@
         <item>Palestine</item>
         <item>Poland</item>
         <item>United Arab Emirates</item>
+    </string-array>
 
-
+    <string-array name="countryCode_array">
+        <item>Select a Country </item>
+        <item>TR</item>
+        <item>DE</item>
+        <item>FR</item>
+        <item>BE</item>
+        <item>ES</item>
+        <item>MX</item>
+        <item>JP</item>
+        <item>PS</item>
+        <item>PL</item>
+        <item>AE</item>
     </string-array>
     <string-array name="city_array">
         <item>Konya</item>
