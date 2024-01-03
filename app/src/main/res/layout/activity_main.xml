@@ -29,25 +29,42 @@
             android:layout_marginTop="5dp"
             android:src="@drawable/avatar1" />
 
+
         <TextView
             android:id="@+id/username"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_toEndOf="@id/profilePicture"
-            android:text="JohnDoe"
-            android:textSize="18sp" />
+            android:fontFamily="@font/bubble"
+            android:text="Welcome Back"
+            android:textSize="30sp" />
         <TextView
-            android:id="@+id/point"
+            android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/profilePicture"
             android:layout_below="@id/username"
-            android:text="Contribution Points:"
-            android:textSize="16sp" />
+            android:fontFamily="@font/bubble"
+            android:text="Paw Points:"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bubble"
+            android:layout_toEndOf="@id/welcome"
+            android:layout_below="@id/username"
+            android:text="50"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <!-- User Achievements Table -->
@@ -74,8 +91,11 @@
             <TextView
                 android:id="@+id/T_badge1"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/bubble"
+                android:textSize="17sp"
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:text="Successful Adoption Badge"/>
             <ImageView
@@ -102,8 +122,11 @@
             <TextView
                 android:id="@+id/T_badge2"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/bubble"
+                android:textSize="17sp"
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:text="Pet Friendly Badge" />
         </TableRow>

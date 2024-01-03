@@ -15,14 +15,14 @@
 
         <ImageView
             android:id="@+id/imageViewLogoSignup"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_width="281dp"
+            android:layout_height="285dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="66dp"
             android:contentDescription="@string/logo_description"
-            android:src="@drawable/paw_logo" />
+            android:src="@drawable/logo_paw" />
 
         <EditText
             android:id="@+id/editTextUsernameSignup"
@@ -31,13 +31,14 @@
             android:layout_below="@id/imageViewLogoSignup"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="-40dp"
+            android:layout_marginTop="19dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_edittext_background"
             android:hint="@string/username"
             android:padding="12dp"
+            android:fontFamily="@font/bubble"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editTextPasswordSignup"
@@ -51,8 +52,9 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
+            android:fontFamily="@font/bubble"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/editTextConfirmPassword"
@@ -65,9 +67,10 @@
             android:background="@drawable/rounded_edittext_background"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:padding="12dp"
+            android:fontFamily="@font/bubble"
+            android:padding="15dp"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
         <!-- Add two Spinner (Dropdown) elements for city and neighborhood -->
         <Spinner
@@ -78,6 +81,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
+            android:prompt="@string/choose_city_prompt"
             android:background="@drawable/rounded_edittext_background"
             android:textSize="20sp" />
 
@@ -102,12 +106,13 @@
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="145dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="39dp"
             android:layout_marginEnd="141dp"
             android:background="@drawable/rounded_button_background"
             android:text="@string/sign_up_button"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="23sp"
+            android:fontFamily="@font/luckiest_guy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/avatarSpinner" />
