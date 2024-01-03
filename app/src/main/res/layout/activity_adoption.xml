@@ -70,7 +70,7 @@
 
     <ImageView
         android:layout_marginTop="110dp"
-        android:id="@+id/imageView"
+        android:id="@+id/imageSearchButton"
         android:layout_width="91dp"
         android:layout_height="94dp"
         app:srcCompat="@drawable/search" />
