@@ -15,6 +15,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -114,15 +118,53 @@ public class EmergencyActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String result) {
                 if (result != null) {
-                    // Handle the API response here
-                    // The 'result' variable contains the response from the API
-                    // You can parse and use the data as needed
-                    // For example, you can update text views with the obtained information
-                    text1.setText("Response: " + result);
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        JSONObject dataObject = jsonObject.getJSONObject("data");
+                        JSONObject countryObject = dataObject.getJSONObject("country");
+
+                        JSONObject ambulanceObject = dataObject.getJSONObject("ambulance");
+                        JSONArray ambulanceNumbersArray = ambulanceObject.getJSONArray("all");
+                        String ambulance = joinJSONArray(ambulanceNumbersArray);
+
+                        JSONObject fireObject = dataObject.getJSONObject("fire");
+                        JSONArray fireNumbersArray = fireObject.getJSONArray("all");
+                        String fire = joinJSONArray(fireNumbersArray);
+
+                        JSONObject policeObject = dataObject.getJSONObject("police");
+                        JSONArray policeNumbersArray = policeObject.getJSONArray("all");
+                        String police = joinJSONArray(policeNumbersArray);
+
+
+
+                        String isoCode = countryObject.getString("ISOCode");
+                        String isoNumeric = countryObject.getString("ISONumeric");
+
+
+                        // Similarly, you can parse other information like fire, police, etc.
+
+                        // Now, update your text views with the obtained information
+                        text1.setText(ambulance);
+                        text2.setText(fire);
+                        text3.setText(police);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        text1.setText("JSON parsing failed");
+                    }
                 } else {
                     // Handle the case where the API call failed
                     text1.setText("API call failed");
                 }
+            }
+            private String joinJSONArray(JSONArray jsonArray) throws JSONException {
+                StringBuilder result = new StringBuilder();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    if (i > 0) {
+                        result.append(", ");
+                    }
+                    result.append(jsonArray.getString(i));
+                }
+                return result.toString();
             }
         }.execute();
     }
