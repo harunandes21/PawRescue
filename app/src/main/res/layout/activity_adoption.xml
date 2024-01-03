@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/adopt_background">
+    android:background="@drawable/adopt_back">
 
 
 
@@ -23,15 +23,17 @@
             <!-- Location filter -->
             <Spinner
                 android:id="@+id/locationSpinner"
-                android:layout_width="wrap_content"
+                android:background="@drawable/rounded_button_background"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
 
             <!-- Species filter -->
             <Spinner
                 android:id="@+id/speciesSpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/rounded_edittext_background"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
@@ -41,14 +43,17 @@
             <!-- Age filter -->
             <Spinner
                 android:id="@+id/ageSpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_edittext_background"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
 
+
             <!-- Health status filter -->
             <Spinner
+                android:background="@drawable/rounded_button_background"
                 android:id="@+id/healthStatusSpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -69,7 +74,7 @@
          />
 
     <ImageView
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="725dp"
         android:id="@+id/imageSearchButton"
         android:layout_width="91dp"
         android:layout_height="94dp"
@@ -81,32 +86,41 @@
         android:layout_height="195dp"
 
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="250dp"
         app:srcCompat="@drawable/back3" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="146dp"
-        android:layout_height="261dp"
-        android:layout_marginLeft="137dp"
-        android:layout_marginTop="430dp"
+        android:layout_width="252dp"
+        android:layout_height="193dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="450dp"
+        android:fontFamily="@font/bubble"
         android:text="NAME:\n\nAGE:\n\nLOCATION
-                                  " />
+
+                                  "
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/buttonLeft"
-        android:layout_width="78dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="300dp"
-        android:text="Button"
+        android:layout_width="65dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="660dp"
+        android:background="@drawable/left"
+
         />
+
     <Button
         android:id="@+id/buttonRight"
-        android:layout_width="78dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="330dp"
-        android:text="Button"
+        android:layout_width="60dp"
+
+        android:layout_height="45dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="660dp"
+        android:background="@drawable/right"
+
         />
 
 </RelativeLayout>
