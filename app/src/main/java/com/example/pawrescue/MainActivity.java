@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,15 +25,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pawrescue.data.NotDefterimContract;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
-    public ImageView profilePicture;
+    public ImageView profilePicture ,catfacts;
     private GestureDetector gestureDetector;
     private boolean isZoomed = false;
 
+    //https://catfact.ninja/fact?max_length=140
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("sas","asa");
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -51,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.LogOutButton);
         Button vAdopt = findViewById(R.id.Vbutton);
         Button sos = findViewById(R.id.SosButton);
+        catfacts = findViewById(R.id.cat_facts);
         badge1.setOnTouchListener(new OnDoubleTapListener(this, badge1));
         badge2.setOnTouchListener(new OnDoubleTapListener(this, badge2));
 
@@ -142,8 +163,82 @@ public class MainActivity extends AppCompatActivity {
 
            }
         }
+        catfacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                apiCall(loggedInUser);
+            }
+        });
     }
 
+    private void showAlertDialogCatFacts(String title, String message,User user) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        updateUserPoint(user);
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    @SuppressLint("StaticFieldLeak")
+    private void apiCall(User user) {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                try {
+                    URL url = new URL("https://catfact.ninja/fact?max_length=140");
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                        StringBuilder result = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            result.append(line);
+                        }
+                        return result.toString();
+                    } finally {
+                        urlConnection.disconnect();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                if (result != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        String fact = jsonObject.getString("fact");
+                        showAlertDialogCatFacts("Cat Facts", fact,user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // Handle the case where the API call failed
+                }
+            }
+        }.execute();
+    }
+
+    private void updateUserPoint(User user) {
+        user.point += 100;
+        TextView t = findViewById(R.id.point);
+        t.setText(String.valueOf(user.point));
+        ContentValues values = new ContentValues();
+        values.put(NotDefterimContract.UserEntry.COLUMN_POINT, user.point);
+        String userId = String.valueOf(user.id);
+        String selection = NotDefterimContract.UserEntry._ID + " = ? ";
+        String selectionArgs[] = {userId};
+        getContentResolver().update(UserProvider.CONTENT_URI_USER,values,selection,selectionArgs);
+    }
     private void performZoomIn() {
         // Zoom in effect using ObjectAnimator
         Animator scaleUpX = ObjectAnimator.ofFloat(profilePicture, "scaleX", 1.0f, 1.5f);
