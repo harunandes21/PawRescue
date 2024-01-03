@@ -188,7 +188,7 @@ public class AdoptionActivity extends AppCompatActivity {
 
         adoptButton.setOnClickListener(view -> {
 
-            showAlertDialog("Success!", "You have successful adopted a pet and earned 100 points!!!");
+            showAlertDialog("Adoption Request Sent To Owner", "The owner can contact you. And, You Earned 100 Points!!!");
         });
     }
 
@@ -279,7 +279,7 @@ public class AdoptionActivity extends AppCompatActivity {
         String apiUrl = "https://api.petfinder.com/v2/animals?type="+apiUrl_type+"&age="+apiUrl_age+
                 "&gender="+apiUrl_gender+"&location="+apiUrl_location+"&limit=100&page=1";
 
-        String authToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJZYjdHRkpvS0Q0bDQ0N1BkVFRYRjljdXdwakVPRzd0WG13MW9hOHlNVE1pQ2lRYnp1YyIsImp0aSI6ImQwYWM5Y2Q3ZmZkMDU2MDM1NzMyNGNhNDIwYzBmODFiMTM4MzNjM2QxNGM2YTRjZmM3OTNlY2UzNDhmMDdkOTViNzEyY2Q4MjY3ZDU3NDliIiwiaWF0IjoxNzA0MzA5Nzg5LCJuYmYiOjE3MDQzMDk3ODksImV4cCI6MTcwNDMxMzM4OSwic3ViIjoiIiwic2NvcGVzIjpbXX0.PMbFDmw2zdwQ5YBeH1PmOiRHBxG8ewLwBYzbjJljTxYLL5QEweWIRPUDLAUD9t5P7PplEnWjG8uKQ8X5eufrLFgclGDpeQRv2cWPSfmcaRk_RgvRjFgVng4g2J-YJlxol0kS-DdLQy6hCYw_fUybBSwqHmcFOTHLL_eZu97i8qwoBqmSiYWbpgV6BICmDm7bCVVS67L46fDCMbzorndGaLUyzr7MCzhTzcgaK7oknCCAFVl2770QeyTJ6lz89REkZPEy_yjXA4HA_Ya-uCKOtPxSTXnOgre2S6xNrGk6TsVt8b-GgzTaxi13kddOdVUlUL9weXxJ0i1MpimnQENnWg";
+        String authToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJZYjdHRkpvS0Q0bDQ0N1BkVFRYRjljdXdwakVPRzd0WG13MW9hOHlNVE1pQ2lRYnp1YyIsImp0aSI6IjRmYjVjYTg3NTBlZWEwMjNmMjc2ZmM1ZTQ2MzUxMmQ2YmZhMTM3ODI0YzdmNjMxMTE1NWFlYmMyOGQ5NmI4ZDU1YjM0ZTdhZmVkOTU1YzJhIiwiaWF0IjoxNzA0MzEzNTQ5LCJuYmYiOjE3MDQzMTM1NDksImV4cCI6MTcwNDMxNzE0OSwic3ViIjoiIiwic2NvcGVzIjpbXX0.IBToo-DxwMX-kZEdckMGrORcK4sM4mNikur1XwQ6L3NPv8QM5Dagm9Nfk5dBZgYtzaNqh1WGY-IpWKdXbtoTnlss1AqUTENZLTyHgI_EpjTb8tEqutBR7wiaN-qSmQAA4IdV2r0D0r8hJyzTpIFLFfB3sGop1tCQ5KwaFkt02ml5izO-biw44rmA9TXHGH5_DGB5Y5IBGEyJqcLk0gPcfbZZaEkqlcKRX1xq82JTHRJgZRKNmckynRR7xP0n0yKBkVDdL47OA7FYrmhVg2uZype_jmysQBH8X1-Qeu3xdXBpurvYEbmM7e1Gq4-UiaDN1aEuiMj0gFd5sAsVs9j5LQ";
 
         URL url = new URL(apiUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

@@ -44,10 +44,14 @@ public class MainActivity extends AppCompatActivity {
     public ImageView profilePicture ,catfacts;
     private GestureDetector gestureDetector;
     private boolean isZoomed = false;
+    ImageView badge2;
+    ImageView badge1;
+    TextView tBadge2;
 
     //https://catfact.ninja/fact?max_length=140
     @SuppressLint("ClickableViewAccessibility")
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("sas","asa");
         super.onCreate(savedInstanceState);
@@ -63,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         setContentView(R.layout.activity_main);
-        ImageView badge1=findViewById(R.id.badge1);
-        ImageView badge2=findViewById(R.id.badge2);
+         badge1=findViewById(R.id.badge1);
+         badge2=findViewById(R.id.badge2);
         TextView tBadge1=findViewById(R.id.T_badge1);
-        TextView tBadge2=findViewById(R.id.T_badge2);
+         tBadge2=findViewById(R.id.T_badge2);
         profilePicture = findViewById(R.id.profilePicture);
         Button logoutButton = findViewById(R.id.LogOutButton);
         Button vAdopt = findViewById(R.id.Vbutton);
@@ -179,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         updateUserPoint(user);
+                        badge2.setVisibility(View.VISIBLE);
+                        tBadge2.setVisibility(View.VISIBLE);
+
                     }
                 });
 
