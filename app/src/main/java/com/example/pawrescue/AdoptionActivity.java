@@ -102,18 +102,6 @@ public class AdoptionActivity extends AppCompatActivity {
 
         adoptButton.setOnClickListener(view -> {
 
-
-            ContentValues values = new ContentValues();
-            //values.put(NotDefterimContract.UserEntry.COLUMN_USERNAME, "sss");
-            //values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, "password");
-            values.put(NotDefterimContract.UserEntry.COLUMN_POINT, 100);
-            String userId = String.valueOf(loggedInUser.id);
-            String selection = NotDefterimContract.UserEntry._ID + " = ? ";
-            String selectionArgs[] = {userId};
-
-            getContentResolver().update(CONTENT_URI_USER,values,selection,selectionArgs);
-
-            //adoptButton.setText(healthStatus);
             showAlertDialog("Success!", "You have successful adopted a pet and earned 100 points!!!");
         });
     }
@@ -123,9 +111,17 @@ public class AdoptionActivity extends AppCompatActivity {
         builder.setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", (dialog, which) -> {
+                    loggedInUser.point += 100;
+
+                    ContentValues values = new ContentValues();
+                    values.put(NotDefterimContract.UserEntry.COLUMN_POINT, loggedInUser.point);
+                    String userId = String.valueOf(loggedInUser.id);
+                    String selection = NotDefterimContract.UserEntry._ID + " = ? ";
+                    String selectionArgs[] = {userId};
+                    getContentResolver().update(CONTENT_URI_USER,values,selection,selectionArgs);
+
                     Intent mainIntent = new Intent(AdoptionActivity.this, MainActivity.class);
                     mainIntent.putExtra("user", loggedInUser);
-                    loggedInUser.point += 100;
                     startActivity(mainIntent);
                     finish();
                 });
