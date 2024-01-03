@@ -81,7 +81,6 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
-            android:prompt="@string/choose_city_prompt"
             android:background="@drawable/rounded_edittext_background"
             android:textSize="20sp" />
 

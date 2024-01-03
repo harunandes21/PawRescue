@@ -67,6 +67,7 @@
     </string-array>
 
     <string-array name="city_array_us">
+        <item>Choose State</item>
         <item>Alabama</item>
         <item>Alaska</item>
         <item>Arizona</item>
@@ -142,19 +143,22 @@
     <string name="logo_description">PawRescue Logo</string>
 
     <string-array name="species_array">
+        <item>Choose Type</item>
         <item>Dog</item>
         <item>Cat</item>
     </string-array>
 
     <string-array name="age_array">
+        <item>Choose Age</item>
         <item>Baby</item>
         <item>Young</item>
         <item>Adult</item>
     </string-array>
 
     <string-array name="gender">
+        <item>Choose Gender</item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
-    
+
 </resources>
