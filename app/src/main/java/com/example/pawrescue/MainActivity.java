@@ -8,10 +8,13 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getWindow().setDecorFitsSystemWindows(false);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().setNavigationBarColor(getResources().getColor(android.R.color.transparent, getTheme()));
+            }
+        }
         setContentView(R.layout.activity_main);
         ImageView badge1=findViewById(R.id.badge1);
         ImageView badge2=findViewById(R.id.badge2);
@@ -55,14 +69,6 @@ public class MainActivity extends AppCompatActivity {
             String userPoint = String.valueOf(loggedInUser.point);
             int userPointInt = Integer.parseInt(userPoint);
             userPointView.setText(userPoint);
-
-            profilePicture.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Handle click action here
-                    Toast.makeText(MainActivity.this, "Image Clicked", Toast.LENGTH_SHORT).show();
-                }
-            });
 
             sos.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onLongClick(View v) {
                     // Handle long press action here
-                    Toast.makeText(MainActivity.this, "Image Long Pressed", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Image Long Pressed", Toast.LENGTH_SHORT).show();
                     // Enlarge the image on long press
                     performZoomIn();
                     return true; // Return true to consume the long click event
