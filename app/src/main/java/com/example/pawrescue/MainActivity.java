@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         profilePicture = findViewById(R.id.profilePicture);
         Button logoutButton = findViewById(R.id.LogOutButton);
         Button vAdopt = findViewById(R.id.Vbutton);
+        Button sos = findViewById(R.id.SosButton);
         badge1.setOnTouchListener(new OnDoubleTapListener(this, badge1));
         badge2.setOnTouchListener(new OnDoubleTapListener(this, badge2));
 
@@ -60,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     // Handle click action here
                     Toast.makeText(MainActivity.this, "Image Clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            sos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, EmergencyActivity.class);
+                    startActivity(intent);
                 }
             });
 
