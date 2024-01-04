@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pawrescue.data.NotDefterimContract;
+import com.example.pawrescue.data.ProviderContract;
 
 import java.util.Objects;
 
@@ -114,7 +113,7 @@ public class SignupActivity extends AppCompatActivity {
                 Cursor usernameCursor = getContentResolver().query(
                         CONTENT_URI_USER,
                         null,
-                        NotDefterimContract.UserEntry.COLUMN_USERNAME + "=?",
+                        ProviderContract.UserEntry.COLUMN_USERNAME + "=?",
                         new String[]{username},
                         null
                 );
@@ -130,11 +129,11 @@ public class SignupActivity extends AppCompatActivity {
 
                 // Insert data into content provider
                 ContentValues values = new ContentValues();
-                values.put(NotDefterimContract.UserEntry.COLUMN_USERNAME, username);
-                values.put(NotDefterimContract.UserEntry.COLUMN_PASSWORD, password);
-                values.put(NotDefterimContract.UserEntry.COLUMN_CITY, city);
-                values.put(NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX, avatar);
-                values.put(NotDefterimContract.UserEntry.COLUMN_POINT, 0);
+                values.put(ProviderContract.UserEntry.COLUMN_USERNAME, username);
+                values.put(ProviderContract.UserEntry.COLUMN_PASSWORD, password);
+                values.put(ProviderContract.UserEntry.COLUMN_CITY, city);
+                values.put(ProviderContract.UserEntry.COLUMN_AVATAR_INDEX, avatar);
+                values.put(ProviderContract.UserEntry.COLUMN_POINT, 0);
 
                 getContentResolver().insert(CONTENT_URI_USER, values);
 

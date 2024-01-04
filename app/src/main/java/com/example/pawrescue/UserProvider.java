@@ -13,9 +13,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.pawrescue.data.NotDefterimContract;
-
-import java.util.regex.Matcher;
+import com.example.pawrescue.data.ProviderContract;
 
 public class UserProvider extends ContentProvider {
     SQLiteDatabase db;
@@ -41,37 +39,37 @@ public class UserProvider extends ContentProvider {
     private static final int DATABASE_VERSION=1;
 
     private static final String TABLE_USER_CREATE =
-            "CREATE TABLE " + NotDefterimContract.UserEntry.TABLE_NAME + " (" +
-                    NotDefterimContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
-                    NotDefterimContract.UserEntry.COLUMN_USERNAME + " TEXT NOT NULL," +
-                    NotDefterimContract.UserEntry.COLUMN_PASSWORD + " TEXT NOT NULL," +
-                    NotDefterimContract.UserEntry.COLUMN_POINT + " INTEGER NOT NULL," +
-                    NotDefterimContract.UserEntry.COLUMN_CITY + " TEXT NOT NULL," +
-                    NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX + " INTEGER NOT NULL," +
-                    NotDefterimContract.UserEntry.COLUMN_ADOPTION_ID + " INTEGER," +
-                    "FOREIGN KEY (" + NotDefterimContract.UserEntry.COLUMN_ADOPTION_ID + ") REFERENCES adoption(_ID)" +
+            "CREATE TABLE " + ProviderContract.UserEntry.TABLE_NAME + " (" +
+                    ProviderContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
+                    ProviderContract.UserEntry.COLUMN_USERNAME + " TEXT NOT NULL," +
+                    ProviderContract.UserEntry.COLUMN_PASSWORD + " TEXT NOT NULL," +
+                    ProviderContract.UserEntry.COLUMN_POINT + " INTEGER NOT NULL," +
+                    ProviderContract.UserEntry.COLUMN_CITY + " TEXT NOT NULL," +
+                    ProviderContract.UserEntry.COLUMN_AVATAR_INDEX + " INTEGER NOT NULL," +
+                    ProviderContract.UserEntry.COLUMN_ADOPTION_ID + " INTEGER," +
+                    "FOREIGN KEY (" + ProviderContract.UserEntry.COLUMN_ADOPTION_ID + ") REFERENCES adoption(_ID)" +
                     ");";
 
 
     private static final String TABLE_PET_CREATE =
-            "CREATE TABLE " + NotDefterimContract.PetEntry.TABLE_NAME + " (" +
-                    NotDefterimContract.PetEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    NotDefterimContract.PetEntry.COLUMN_NAME + " TEXT NOT NULL, " +
-                    NotDefterimContract.PetEntry.COLUMN_SPECIES + " TEXT NOT NULL, " +
-                    NotDefterimContract.PetEntry.COLUMN_GENDER + " TEXT, " +
-                    NotDefterimContract.PetEntry.COLUMN_HEALTH + " TEXT, " +
-                    NotDefterimContract.PetEntry.COLUMN_LOCATION + " TEXT, " +
-                    NotDefterimContract.PetEntry.COLUMN_IMAGE_URL + " TEXT, " +
-                    NotDefterimContract.PetEntry.COLUMN_OWNER_NAME + " TEXT, " +
-                    NotDefterimContract.PetEntry.COLUMN_AGE + " TEXT NOT NULL" +
+            "CREATE TABLE " + ProviderContract.PetEntry.TABLE_NAME + " (" +
+                    ProviderContract.PetEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    ProviderContract.PetEntry.COLUMN_NAME + " TEXT NOT NULL, " +
+                    ProviderContract.PetEntry.COLUMN_SPECIES + " TEXT NOT NULL, " +
+                    ProviderContract.PetEntry.COLUMN_GENDER + " TEXT, " +
+                    ProviderContract.PetEntry.COLUMN_HEALTH + " TEXT, " +
+                    ProviderContract.PetEntry.COLUMN_LOCATION + " TEXT, " +
+                    ProviderContract.PetEntry.COLUMN_IMAGE_URL + " TEXT, " +
+                    ProviderContract.PetEntry.COLUMN_OWNER_NAME + " TEXT, " +
+                    ProviderContract.PetEntry.COLUMN_AGE + " TEXT NOT NULL" +
                     ");";
 
     private static final String TABLE_ADOPTION_CREATE =
-            "CREATE TABLE " + NotDefterimContract.AdoptionEntry.TABLE_NAME + " (" +
-                    NotDefterimContract.AdoptionEntry._ID + " INTEGER PRIMARY KEY," +
-                    NotDefterimContract.AdoptionEntry.COLUMN_STATUS+ " TEXT NOT NULL," +
-                    NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + " INTEGER NOT NULL," +
-                    "FOREIGN KEY (" + NotDefterimContract.AdoptionEntry.COLUMN_PET_ID + ") REFERENCES pet(_ID)" +
+            "CREATE TABLE " + ProviderContract.AdoptionEntry.TABLE_NAME + " (" +
+                    ProviderContract.AdoptionEntry._ID + " INTEGER PRIMARY KEY," +
+                    ProviderContract.AdoptionEntry.COLUMN_STATUS+ " TEXT NOT NULL," +
+                    ProviderContract.AdoptionEntry.COLUMN_PET_ID + " INTEGER NOT NULL," +
+                    "FOREIGN KEY (" + ProviderContract.AdoptionEntry.COLUMN_PET_ID + ") REFERENCES pet(_ID)" +
                     ");";
 
     @Override
@@ -87,7 +85,7 @@ public class UserProvider extends ContentProvider {
         switch (matcher.match(uri)){
             case 1:
                 Cursor cursor = db.query(
-                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        ProviderContract.UserEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -99,9 +97,9 @@ public class UserProvider extends ContentProvider {
             case 2:
                 String usernameToCheck = uri.getLastPathSegment();
                 Cursor usernameCursor = db.query(
-                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        ProviderContract.UserEntry.TABLE_NAME,
                         projection,
-                        NotDefterimContract.UserEntry.COLUMN_USERNAME + "=?",
+                        ProviderContract.UserEntry.COLUMN_USERNAME + "=?",
                         new String[]{usernameToCheck},
                         null,
                         null,
@@ -114,7 +112,7 @@ public class UserProvider extends ContentProvider {
                 }
             case 3:
                 Cursor cursorPet = db.query(
-                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        ProviderContract.UserEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -125,7 +123,7 @@ public class UserProvider extends ContentProvider {
                 return cursorPet;
             case 4:
                 Cursor cursorAdoption = db.query(
-                        NotDefterimContract.UserEntry.TABLE_NAME,
+                        ProviderContract.UserEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -150,7 +148,7 @@ public class UserProvider extends ContentProvider {
         switch (matcher.match(uri)){
             case 1:
                 try {
-                    long newRowId = db.insert(NotDefterimContract.UserEntry.TABLE_NAME, null, values);
+                    long newRowId = db.insert(ProviderContract.UserEntry.TABLE_NAME, null, values);
 
                     if (newRowId > 0) {
                         Uri _uri = ContentUris.withAppendedId(CONTENT_URI_USER,newRowId);
@@ -164,7 +162,7 @@ public class UserProvider extends ContentProvider {
                 }
             case 2:
                 try {
-                    long newRowId = db.insert(NotDefterimContract.UserEntry.TABLE_NAME, null, values);
+                    long newRowId = db.insert(ProviderContract.UserEntry.TABLE_NAME, null, values);
 
                     if (newRowId > 0) {
                         Uri _uri = ContentUris.withAppendedId(CONTENT_URI_USER,newRowId);
@@ -178,7 +176,7 @@ public class UserProvider extends ContentProvider {
                 }
             case 3:
                 try {
-                    long newRowId = db.insert(NotDefterimContract.PetEntry.TABLE_NAME, null, values);
+                    long newRowId = db.insert(ProviderContract.PetEntry.TABLE_NAME, null, values);
 
                     if (newRowId > 0) {
                         Uri _uri = ContentUris.withAppendedId(CONTENT_URI_PET,newRowId);
@@ -192,7 +190,7 @@ public class UserProvider extends ContentProvider {
                 }
             case 4:
                 try {
-                    long newRowId = db.insert(NotDefterimContract.AdoptionEntry.TABLE_NAME, null, values);
+                    long newRowId = db.insert(ProviderContract.AdoptionEntry.TABLE_NAME, null, values);
 
                     if (newRowId > 0) {
                         Uri _uri = ContentUris.withAppendedId(CONTENT_URI_ADOPTION,newRowId);
@@ -223,19 +221,19 @@ public class UserProvider extends ContentProvider {
         switch (uriType) {
             case 1:
                 // Tüm verileri güncelleme
-                rowsUpdated = db.update(NotDefterimContract.UserEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(ProviderContract.UserEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case 2:
                 // Tüm verileri güncelleme
-                rowsUpdated = db.update(NotDefterimContract.UserEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(ProviderContract.UserEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case 3:
                 // Tüm verileri güncelleme
-                rowsUpdated = db.update(NotDefterimContract.PetEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(ProviderContract.PetEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case 4:
                 // Tüm verileri güncelleme
-                rowsUpdated = db.update(NotDefterimContract.AdoptionEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(ProviderContract.AdoptionEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

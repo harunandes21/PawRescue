@@ -23,11 +23,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.pawrescue.data.NotDefterimContract;
+import com.example.pawrescue.data.ProviderContract;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -240,9 +238,9 @@ public class MainActivity extends AppCompatActivity {
         TextView t = findViewById(R.id.point);
         t.setText(String.valueOf(user.point));
         ContentValues values = new ContentValues();
-        values.put(NotDefterimContract.UserEntry.COLUMN_POINT, user.point);
+        values.put(ProviderContract.UserEntry.COLUMN_POINT, user.point);
         String userId = String.valueOf(user.id);
-        String selection = NotDefterimContract.UserEntry._ID + " = ? ";
+        String selection = ProviderContract.UserEntry._ID + " = ? ";
         String selectionArgs[] = {userId};
         getContentResolver().update(UserProvider.CONTENT_URI_USER,values,selection,selectionArgs);
     }

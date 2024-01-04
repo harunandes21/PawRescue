@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+
 import com.squareup.picasso.Picasso;
 import android.view.View;
 import android.view.Window;
@@ -23,7 +23,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pawrescue.data.NotDefterimContract;
+import com.example.pawrescue.data.ProviderContract;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -200,9 +200,9 @@ public class AdoptionActivity extends AppCompatActivity {
                     loggedInUser.point += 100;
 
                     ContentValues values = new ContentValues();
-                    values.put(NotDefterimContract.UserEntry.COLUMN_POINT, loggedInUser.point);
+                    values.put(ProviderContract.UserEntry.COLUMN_POINT, loggedInUser.point);
                     String userId = String.valueOf(loggedInUser.id);
-                    String selection = NotDefterimContract.UserEntry._ID + " = ? ";
+                    String selection = ProviderContract.UserEntry._ID + " = ? ";
                     String selectionArgs[] = {userId};
                     getContentResolver().update(CONTENT_URI_USER,values,selection,selectionArgs);
 
@@ -276,11 +276,11 @@ public class AdoptionActivity extends AppCompatActivity {
         apiUrl_type = speciesSpinner.getSelectedItem().toString();
         apiUrl_gender = healthStatusSpinner.getSelectedItem().toString();
         apiUrl_age = ageSpinner.getSelectedItem().toString();
+
         String apiUrl = "https://api.petfinder.com/v2/animals?type="+apiUrl_type+"&age="+apiUrl_age+
                 "&gender="+apiUrl_gender+"&location="+apiUrl_location+"&limit=100&page=1";
 
-        String authToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJZYjdHRkpvS0Q0bDQ0N1BkVFRYRjljdXdwakVPRzd0WG13MW9hOHlNVE1pQ2lRYnp1YyIsImp0aSI6IjRmYjVjYTg3NTBlZWEwMjNmMjc2ZmM1ZTQ2MzUxMmQ2YmZhMTM3ODI0YzdmNjMxMTE1NWFlYmMyOGQ5NmI4ZDU1YjM0ZTdhZmVkOTU1YzJhIiwiaWF0IjoxNzA0MzEzNTQ5LCJuYmYiOjE3MDQzMTM1NDksImV4cCI6MTcwNDMxNzE0OSwic3ViIjoiIiwic2NvcGVzIjpbXX0.IBToo-DxwMX-kZEdckMGrORcK4sM4mNikur1XwQ6L3NPv8QM5Dagm9Nfk5dBZgYtzaNqh1WGY-IpWKdXbtoTnlss1AqUTENZLTyHgI_EpjTb8tEqutBR7wiaN-qSmQAA4IdV2r0D0r8hJyzTpIFLFfB3sGop1tCQ5KwaFkt02ml5izO-biw44rmA9TXHGH5_DGB5Y5IBGEyJqcLk0gPcfbZZaEkqlcKRX1xq82JTHRJgZRKNmckynRR7xP0n0yKBkVDdL47OA7FYrmhVg2uZype_jmysQBH8X1-Qeu3xdXBpurvYEbmM7e1Gq4-UiaDN1aEuiMj0gFd5sAsVs9j5LQ";
-
+        String authToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJZYjdHRkpvS0Q0bDQ0N1BkVFRYRjljdXdwakVPRzd0WG13MW9hOHlNVE1pQ2lRYnp1YyIsImp0aSI6ImM4NDA5NGQ0NzkxYzY3YmRjNzQ1YmMwY2I3MTVhODkzZDAxZGQyNzhlYTZkYTE5YjNjNjFjMTY0M2VhZDY0NDkzY2FiOTE2MmVjNzYzZjlhIiwiaWF0IjoxNzA0MzYzODk2LCJuYmYiOjE3MDQzNjM4OTYsImV4cCI6MTcwNDM2NzQ5Niwic3ViIjoiIiwic2NvcGVzIjpbXX0.TW114jVvl6rCbMFEI9a78Zxx-K_9zIBxKNT7ziJkdGqQIVyhkWCGqqnGaaQO2u7XcAlkdsDFGf72oKYnAlwA1wFwTtrB_cT9rtM3rKmDg10z-f67tGwnF1UNo4YsXnawyMGVvXNQ9o1S7srZ4IoYH3SFjnCCiWAxpRIsdphs07k8U6BG24B2zoER6QrBrCys2nR7upTFDm-zTNnJaZp1FwlVvr4Xa21mgKrmQKiyZT_3v4bFYFHsh64p62wlQ2DOnft--18T73Wav2xqBJRTOIz686epi7ihRLKiqp7zawrFx324GdkQkmK_99VmgSIiZNwelqf8ghHz92Us8GAFXQ";
         URL url = new URL(apiUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 

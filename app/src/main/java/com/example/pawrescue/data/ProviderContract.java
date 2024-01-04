@@ -2,7 +2,7 @@ package com.example.pawrescue.data;
 
 import android.provider.BaseColumns;
 
-public class NotDefterimContract {
+public class ProviderContract {
 
     public static final class UserEntry implements BaseColumns {
         public static final String TABLE_NAME = "user";

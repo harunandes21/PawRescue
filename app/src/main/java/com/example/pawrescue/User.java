@@ -35,6 +35,11 @@ public class User implements Serializable {
                 return R.drawable.avatar1;
             case 1:
                 return R.drawable.avatar2;
+            case 2:
+                return R.drawable.avatar3;
+            case 3:
+                return R.drawable.avatar4;
+
             // Add more cases as needed
             default:
                 return R.drawable.profile_icon; // Provide a default drawable if needed

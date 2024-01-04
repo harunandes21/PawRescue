@@ -1,10 +1,8 @@
 package com.example.pawrescue;
-import java.io.Serializable;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,8 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pawrescue.data.NotDefterimContract;
-import com.example.pawrescue.User;
+import com.example.pawrescue.data.ProviderContract;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editTextUsername, editTextPassword;
@@ -93,16 +90,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private User loginUser(String username, String password) {
         String[] columns = {
-                NotDefterimContract.UserEntry._ID,
-                NotDefterimContract.UserEntry.COLUMN_CITY,
-                NotDefterimContract.UserEntry.COLUMN_AVATAR_INDEX,
-                NotDefterimContract.UserEntry.COLUMN_POINT,
+                ProviderContract.UserEntry._ID,
+                ProviderContract.UserEntry.COLUMN_CITY,
+                ProviderContract.UserEntry.COLUMN_AVATAR_INDEX,
+                ProviderContract.UserEntry.COLUMN_POINT,
 
 
         };
 
-        String selection = NotDefterimContract.UserEntry.COLUMN_USERNAME + " = ? AND " +
-                NotDefterimContract.UserEntry.COLUMN_PASSWORD + " = ?";
+        String selection = ProviderContract.UserEntry.COLUMN_USERNAME + " = ? AND " +
+                ProviderContract.UserEntry.COLUMN_PASSWORD + " = ?";
         String[] selectionArgs = {username, password};
 
         Cursor cursor = getContentResolver().query(
